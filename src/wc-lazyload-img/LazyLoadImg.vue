@@ -54,10 +54,11 @@
 			}
 			/* 滚动事件加载 */
 			document.addEventListener('scroll', ()=> {
+				/* 做这个处理, 主要是为了在用户快速滚动的时候, 对那些被快速滚动过去的元素, 不需要加载 */
 				clearTimeout(timer);
 				timer = setTimeout(()=>{
 					loadImg();
-				}, 30);				
+				}, 20);				
 			}, false);
 
 			/* 移动端的 touchmove 事件 */
@@ -65,7 +66,7 @@
 				clearTimeout(timer);
 				timer = setTimeout(()=>{
 					loadImg();
-				}, 30);				
+				}, 20);				
 			}, false);
 
 			/* 

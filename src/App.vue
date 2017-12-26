@@ -1,90 +1,44 @@
 <style>
-
-.user {
-  height: 150px;
-  width: 150px;	
-}
-.container {
-	padding-top: 100px;
-	padding-left: 20px;
-}
-.box {
-	margin-bottom: 50px;
+li {
+	height: 200px;
+	width: 100%;
+	background: red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.xie {
-	height: 150px;
-	width: 150px;
-	background-position: center center;
+img {
+    width: 100%;
+    height: 200px;
+}
 
-	background-size:cover;
-	display: inline-block;
-	/*float: left;*/
-}	
 </style>
 <template>
 	<div class="container">
-
-			
-
-		<h1 id="test">背景图模式 </h1>
-
-		<div class="xie" v-for="(url, key) in imgList" :key="key"  @click="$preview($event, imgList, key)" :style="{'backgroundImage': 'url(' + url + ')'}">
-			
-		</div>
-
-		
-		<h1>img 标签 帖子1</h1>
-		<div class="box">
-			<img :src="url" v-for="(url,key) in imgList" :key="key" alt="" class="user wc-preview-img" @click="$preview($event, imgList, key)">
-			
-		</div>
-
-		<h2>img 标签 帖子2</h2>
-		<div class="box">
-			<img :src="url" v-for="(url,key) in imgList2" :key="key" alt="" class="user wc-preview-img" @click="$preview($event, imgList2, key, '', {showCloseBtn: false})">
-			
-		</div>
-
+        <lazyload-img v-if="list.length">
+            <img v-lazyload="item" alt="" v-for="(item, key) in list"/>
+            <ul>
+                <li v-lazyload="item" alt="" v-for="(item, key) in list"></li>
+            </ul>
+        </lazyload-img>
 	</div>
 </template>
 <script>
+
 	export default {
 		name: 'App',
-		data () {
-			return {
-				imgList: ['https://bucket-zb-fanba.oss-cn-hangzhou.aliyuncs.com/4b4c9042e3754101ae11d4d97882cbc1.jpg','http://www.nvsay.com/uploads/allimg/161108/172-16110R2214b22.jpg','http://www.nvsay.com/uploads/allimg/161108/172-16110R2220UG.jpg','http://t10.baidu.com/it/u=1863417261,812716211&fm=173&s=FAA0804142D83674D72CC59D0300D083&w=640&h=359&img.JPEG','http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/0D/0F/ChMkJlnJyEKIaQO_AM-mbhQo89QAAgyrABQofAAz6aG651.jpg'],
+        data () {
+            return {
+                list: []
+            }
+        },
+        mounted () {
+            let list = ['http://imgstore.cdn.sogou.com/app/a/100540002/1170479_s_90_2_219x160.jpg','http://pic.58pic.com/58pic/17/18/97/01U58PIC4Xr_1024.jpg','http://77fkxu.com1.z0.glb.clouddn.com/20160308/1457402219_73571.jpg','http://cover.read.duokan.com/mfsv2/download/fdsc3/p01N203pHTU7/Wr5314kcLAtVCi.jpg!t','http://cover.read.duokan.com/mfsv2/download/fdsc3/p01a3SXHo2hZ/XYAC5TLk4uYWXn.jpg!t','http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33R6.jpg','http://4493bz.1985t.com/uploads/allimg/140628/1-14062Q33242.jpg','http://img.bizhi.sogou.com/images/2014/12/10/997251.jpg','http://imgstore.cdn.sogou.com/app/a/100540002/1170473_s_90_2_219x160.jpg'];
 
-
-
-				imgList2: ['http://t10.baidu.com/it/u=1863417261,812716211&fm=173&s=FAA0804142D83674D72CC59D0300D083&w=640&h=359&img.JPEG','http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/0D/0F/ChMkJlnJyEKIaQO_AM-mbhQo89QAAgyrABQofAAz6aG651.jpg'],
-
-
-
-
-
-			}
-		},
-		mounted () {
-		
-
-			// document.querySelector('#test').addEventListener('click', ()=>{
-			// 	// alert(2)
-			// }, false)
-
-			// document.querySelector('#test').addEventListener('dblclick', ()=>{
-			// 	alert(1)
-			// }, false)
-
-
-		},
-		methods: {
-
-			fn (e,list, key) {
-				// console.log(this, this.$event)
-				this.$refs.view.open(e,list, key);
-			}
-
-		}
+            setTimeout(()=>{
+                this.list = list;
+            }, 1000)
+        }
 	}
 </script>

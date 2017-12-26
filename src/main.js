@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 
-import wcView from './wc-view'
-Vue.use(wcView);
+import LazyLoadImg from './wc-lazyload-img'
+Vue.use(LazyLoadImg);
 
 new Vue({
     el: '#app',
